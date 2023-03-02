@@ -1,8 +1,8 @@
 package com.parkinglotsapi.config;
 
-import com.parkinglotsapi.domain.ParkingLotDto;
+import com.parkinglotsapi.domain.dto.ParkingLotDto;
 import com.parkinglotsapi.domain.models.ParkingLot;
-import com.parkinglotsapi.mappers.ParkingSpotFieldSetMapper;
+import com.parkinglotsapi.mappers.ParkingLotFieldSetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -30,7 +30,7 @@ public class BatchConfig {
 
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Value("classPath:/input/LA parking lot.csv")
+    @Value("classPath:/input/${input.fileName}")
     private Resource inputFile;
 
     @Bean
@@ -38,19 +38,19 @@ public class BatchConfig {
         return jobBuilderFactory
                 .get("readCSVFileJob")
                 .incrementer(new RunIdIncrementer())
-                .start(step())
+                .start(readAndPersist())
                 .build();
     }
 
     @Bean
-    public Step step() {
+    public Step readAndPersist() {
         ParkingLotSkipPolicy skipPolicy = new ParkingLotSkipPolicy();
         return stepBuilderFactory
                 .get("step")
                 .<ParkingLotDto, ParkingLot>chunk(50)
-                .reader(reader())
-                .processor(processor())
-                .writer(writer())
+                .reader(parkingLotCsvReader())
+                .processor(parkingLotProcessor())
+                .writer(parkingLotWriter())
                 .faultTolerant()
                 .skipPolicy(skipPolicy)
                 .taskExecutor(taskExecutor())
@@ -58,28 +58,30 @@ public class BatchConfig {
     }
 
     @Bean
-    public FlatFileItemReader<ParkingLotDto> reader() {
-        System.out.println("USAOOOO");
-        FlatFileItemReader<ParkingLotDto> reader = new FlatFileItemReader<>();
-        reader.setResource(inputFile);
-        reader.setLinesToSkip(1);
-        DefaultLineMapper<ParkingLotDto> defaultLineMapper = new DefaultLineMapper<>();
+    public FlatFileItemReader<ParkingLotDto> parkingLotCsvReader() {
         DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
         delimitedLineTokenizer.setNames("Latitude", "Longitude", "A_Name", "Year", "Type");
+
+        DefaultLineMapper<ParkingLotDto> defaultLineMapper = new DefaultLineMapper<>();
         defaultLineMapper.setLineTokenizer(delimitedLineTokenizer);
-        defaultLineMapper.setFieldSetMapper(new ParkingSpotFieldSetMapper());
+        defaultLineMapper.setFieldSetMapper(new ParkingLotFieldSetMapper());
+
+        FlatFileItemReader<ParkingLotDto> reader = new FlatFileItemReader<>();
         reader.setLineMapper(defaultLineMapper);
+        reader.setResource(inputFile);
+        reader.setLinesToSkip(1);
+
         return reader;
     }
 
     @Bean
-    public ItemProcessor<ParkingLotDto, ParkingLot> processor() {
+    public ItemProcessor<ParkingLotDto, ParkingLot> parkingLotProcessor() {
         return new ParkingLotProcessor();
     }
 
     @Bean
-    public ParkingLotRepositoryWriter<ParkingLot> writer() {
-        return new ParkingLotRepositoryWriter<>();
+    public ParkingLotWriter<ParkingLot> parkingLotWriter() {
+        return new ParkingLotWriter<>();
     }
 
     @Bean
@@ -87,8 +89,8 @@ public class BatchConfig {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(10);
         executor.setMaxPoolSize(50);
-        executor.setQueueCapacity(100);
-        executor.setThreadNamePrefix("task executor - ");
+        executor.setQueueCapacity(50);
+        executor.setThreadNamePrefix("task exec. - ");
         executor.initialize();
         return executor;
     }

@@ -1,12 +1,12 @@
 package com.parkinglotsapi.mappers;
 
-import com.parkinglotsapi.domain.ParkingLotDto;
+import com.parkinglotsapi.domain.dto.ParkingLotDto;
 import com.parkinglotsapi.domain.enums.ParkingType;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
-public class ParkingSpotFieldSetMapper implements FieldSetMapper<ParkingLotDto> {
+public class ParkingLotFieldSetMapper implements FieldSetMapper<ParkingLotDto> {
 
     @Override
     public ParkingLotDto mapFieldSet(FieldSet fieldSet) throws BindException {
