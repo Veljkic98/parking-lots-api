@@ -34,19 +34,19 @@ public class BatchConfig {
     private Resource inputFile;
 
     @Bean
-    public Job readCSVFileJob() {
+    public Job readAndPersistJob() {
         return jobBuilderFactory
-                .get("readCSVFileJob")
+                .get("readAndPersistJob")
                 .incrementer(new RunIdIncrementer())
-                .start(readAndPersist())
+                .start(readAndPersistStep())
                 .build();
     }
 
     @Bean
-    public Step readAndPersist() {
+    public Step readAndPersistStep() {
         ParkingLotSkipPolicy skipPolicy = new ParkingLotSkipPolicy();
         return stepBuilderFactory
-                .get("step")
+                .get("readAndPersistStep")
                 .<ParkingLotDto, ParkingLot>chunk(50)
                 .reader(parkingLotCsvReader())
                 .processor(parkingLotProcessor())
@@ -92,6 +92,7 @@ public class BatchConfig {
         executor.setQueueCapacity(50);
         executor.setThreadNamePrefix("task exec. - ");
         executor.initialize();
+
         return executor;
     }
 
