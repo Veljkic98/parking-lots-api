@@ -18,8 +18,8 @@ public class ParkingLotProcessor implements ItemProcessor<ParkingLotDto, Parking
     @Override
     public ParkingLot process(@Nonnull ParkingLotDto parkingLotDto) {
         if (!isValid(parkingLotDto)) {
-            LOGGER.warn(String.format("Error while trying to parse ParkingLotDto to ParkingLot. Skip record: %s", parkingLotDto));
-            throw new BatchSkipException("Could not process record");
+            LOGGER.warn("Error while trying to parse ParkingLotDto to ParkingLot. Skip record: {}", parkingLotDto);
+            throw new BatchSkipException("Could not process record.");
         }
         return ParkingLot.builder()
                 .documentId(UUID.randomUUID())

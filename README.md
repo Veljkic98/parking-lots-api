@@ -51,5 +51,5 @@ docker run -d --name es762 -p 9200:9200 -e "discovery.type=single-node" elastics
 ### Future steps
 
 - Add integration tests using JUnit and Testcontainers
-- Increase test coverage to at least 80%
-- Extend docker-compose to run both Elasticsearch and API
+- Increase test coverage. Currently, test coverage is 40%.
+- Move API documentation from controller to .yaml file.
