@@ -47,7 +47,7 @@ public class BatchConfig {
         ParkingLotSkipPolicy skipPolicy = new ParkingLotSkipPolicy();
         return stepBuilderFactory
                 .get("readAndPersistStep")
-                .<ParkingLotDto, ParkingLot>chunk(50)
+                .<ParkingLotDto, ParkingLot>chunk(200)
                 .reader(parkingLotCsvReader())
                 .processor(parkingLotProcessor())
                 .writer(parkingLotWriter())
@@ -87,9 +87,9 @@ public class BatchConfig {
     @Bean
     public TaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(50);
-        executor.setQueueCapacity(50);
+        executor.setCorePoolSize(4);
+        executor.setMaxPoolSize(8);
+        executor.setQueueCapacity(16);
         executor.setThreadNamePrefix("task exec. - ");
         executor.initialize();
 
