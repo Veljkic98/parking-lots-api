@@ -1,0 +1,9 @@
+version: '3'
+services:
+  es:
+    image: elasticsearch:7.6.2
+    container_name: es762
+    environment:
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
