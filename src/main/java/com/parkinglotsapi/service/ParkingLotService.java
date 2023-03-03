@@ -1,4 +1,4 @@
-package com.parkinglotsapi.services;
+package com.parkinglotsapi.service;
 
 import com.parkinglotsapi.domain.dto.ParkingLotDto;
 

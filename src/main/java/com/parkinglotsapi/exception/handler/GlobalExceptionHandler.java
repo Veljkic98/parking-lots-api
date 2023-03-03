@@ -1,7 +1,8 @@
-package com.parkinglotsapi.exceptions.handlers;
+package com.parkinglotsapi.exception.handler;
 
 import com.parkinglotsapi.domain.dto.ErrorResponseDto;
-import com.parkinglotsapi.exceptions.NotFoundException;
+import com.parkinglotsapi.exception.BadRequestException;
+import com.parkinglotsapi.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
 
     private final HttpServletRequest request;
+
+    @ExceptionHandler(value = { BadRequestException.class })
+    protected ResponseEntity<ErrorResponseDto> handleBadRequest(final BadRequestException e) {
+        return createResponseEntity(createExceptionWrapper(e.getMessage(), HttpStatus.BAD_REQUEST));
+    }
 
     @ExceptionHandler(value = { NotFoundException.class })
     protected ResponseEntity<ErrorResponseDto> handleNotFound(final NotFoundException e) {

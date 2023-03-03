@@ -1,8 +1,8 @@
 package com.parkinglotsapi.config;
 
 import com.parkinglotsapi.domain.dto.ParkingLotDto;
-import com.parkinglotsapi.domain.models.ParkingLot;
-import com.parkinglotsapi.exceptions.BatchSkipException;
+import com.parkinglotsapi.domain.model.ParkingLot;
+import com.parkinglotsapi.exception.BatchSkipException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;

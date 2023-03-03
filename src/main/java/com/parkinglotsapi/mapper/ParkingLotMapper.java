@@ -1,7 +1,7 @@
-package com.parkinglotsapi.mappers;
+package com.parkinglotsapi.mapper;
 
 import com.parkinglotsapi.domain.dto.ParkingLotDto;
-import com.parkinglotsapi.domain.models.ParkingLot;
+import com.parkinglotsapi.domain.model.ParkingLot;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
 public class ParkingLotMapper {

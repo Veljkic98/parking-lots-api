@@ -1,8 +1,8 @@
 package com.parkinglotsapi.config;
 
 import com.parkinglotsapi.domain.dto.ParkingLotDto;
-import com.parkinglotsapi.domain.models.ParkingLot;
-import com.parkinglotsapi.mappers.ParkingLotFieldSetMapper;
+import com.parkinglotsapi.domain.model.ParkingLot;
+import com.parkinglotsapi.mapper.ParkingLotFieldSetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

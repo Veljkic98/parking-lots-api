@@ -1,4 +1,4 @@
-package com.parkinglotsapi.mappers;
+package com.parkinglotsapi.mapper;
 
 import com.parkinglotsapi.domain.dto.ParkingLotDto;
 import com.parkinglotsapi.domain.enums.ParkingType;

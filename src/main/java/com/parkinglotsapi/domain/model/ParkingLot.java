@@ -1,10 +1,9 @@
-package com.parkinglotsapi.domain.models;
+package com.parkinglotsapi.domain.model;
 
 import com.parkinglotsapi.domain.enums.ParkingType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;

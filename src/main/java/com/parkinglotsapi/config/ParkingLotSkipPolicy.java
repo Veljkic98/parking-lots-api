@@ -1,6 +1,6 @@
 package com.parkinglotsapi.config;
 
-import com.parkinglotsapi.exceptions.BatchSkipException;
+import com.parkinglotsapi.exception.BatchSkipException;
 import org.springframework.batch.core.step.skip.SkipLimitExceededException;
 import org.springframework.batch.core.step.skip.SkipPolicy;
 

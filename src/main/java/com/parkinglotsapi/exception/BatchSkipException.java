@@ -1,4 +1,4 @@
-package com.parkinglotsapi.exceptions;
+package com.parkinglotsapi.exception;
 
 public class BatchSkipException extends RuntimeException {
 

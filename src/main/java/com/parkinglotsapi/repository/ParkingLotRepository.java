@@ -1,6 +1,6 @@
-package com.parkinglotsapi.repositories;
+package com.parkinglotsapi.repository;
 
-import com.parkinglotsapi.domain.models.ParkingLot;
+import com.parkinglotsapi.domain.model.ParkingLot;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
