@@ -50,6 +50,6 @@ docker run -d --name es762 -p 9200:9200 -e "discovery.type=single-node" elastics
 
 ### Future steps
 
-- Add integration tests using JUnit and Testcontainers
-- Increase test coverage. Currently, test coverage is 40%.
-- Move API documentation from controller to .yaml file.
+- Add integration tests using Testcontainers
+- Increase test coverage. Currently, test coverage is 40%
+- Move API documentation from controller to .yaml file
