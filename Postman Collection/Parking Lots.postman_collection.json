@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "3ec93e80-391e-4ed8-99cc-4830f66b742d",
+		"name": "Parking Lots",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get nearest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking-lots/nearest?lat=34.0490301&lon=-118.2474664",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-lots",
+						"nearest"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "34.0490301"
+						},
+						{
+							"key": "lon",
+							"value": "-118.2474664"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get score",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking-lots/distance?lat=34.1447017&lon=-118.2600073",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-lots",
+						"distance"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "34.1447017"
+						},
+						{
+							"key": "lon",
+							"value": "-118.2600073"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
