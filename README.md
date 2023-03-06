@@ -7,7 +7,7 @@ through parking lots. For data loading Spring Batch is used because of chunk-bas
 For data persistence Elasticsearch is used because of its fast data retrieval. 
 
 2 endpoints are implemented. First one for retrieving the nearest parking lot for given latitude and longitude.
-Second one is for retrieving parking lots in 1km radius for given latitude and longitude.
+Second one is for retrieving parking lots in 1km radius for given latitude and longitude for every year.
 
 ### Implementation details
 
